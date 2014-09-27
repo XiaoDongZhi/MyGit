@@ -2,7 +2,6 @@ package com.qualcomm.QCARSamples.ImageTargets;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.hardware.Camera;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -12,14 +11,11 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.SurfaceView;
-import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class GpsInfo extends Activity
@@ -32,6 +28,7 @@ public class GpsInfo extends Activity
 	Camera camera;
 	String fileName;
 	Preview preview;
+	private static final String TAG = "CamTestActivity";
 
 	TextView textview;
 	LocationManager manager;
@@ -39,7 +36,7 @@ public class GpsInfo extends Activity
 	SensorManager sensorManager;
 	private Sensor mSensor = null;
 
-	private RelativeLayout mUILayout;
+//	private RelativeLayout mUILayout;
 
 	/* 方位角 */
 	float azimuth;
@@ -60,17 +57,14 @@ public class GpsInfo extends Activity
 
 	double distance = 0;
 	double targetAzimuth = 0;
-	private GLsurfaceView mGlView;
-	private GLRender mRenderer;
-	private View mLoadingDialogContainer;
-	private Object loadingDialogHandler;
+//	private GLsurfaceView mGlView;
+//	private GLRender mRenderer;
+//	private View mLoadingDialogContainer;
+//	private Object loadingDialogHandler;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		try
-		{
-
 			super.onCreate(savedInstanceState);
 			ctx = this;
 			act = this;
@@ -78,42 +72,42 @@ public class GpsInfo extends Activity
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 			setContentView(R.layout.gpsinfo);
 
-			int depthSize = 16;
-			int stencilSize = 0;
-			mGlView = new GLsurfaceView(this);
-			mGlView.init(true, depthSize, stencilSize);
+//			int depthSize = 16;
+//			int stencilSize = 0;
+//			mGlView = new GLsurfaceView(this);
+//			mGlView.init(true, depthSize, stencilSize);
+//
+//			mRenderer = new GLRender();
+//			mRenderer.mActivity = this;
+//			mGlView.setRenderer(mRenderer);
 
-			mRenderer = new GLRender();
-			mRenderer.mActivity = this;
-			mGlView.setRenderer(mRenderer);
+//			addContentView(mGlView, new LayoutParams(LayoutParams.MATCH_PARENT,
+//					LayoutParams.MATCH_PARENT));
 
-			addContentView(mGlView, new LayoutParams(LayoutParams.MATCH_PARENT,
-					LayoutParams.MATCH_PARENT));
-
-			LayoutInflater inflater = LayoutInflater.from(this);
-			mUILayout = (RelativeLayout) inflater.inflate(
-					R.layout.camera_overlay, null, false);
-
-			mUILayout.setVisibility(View.VISIBLE);
-			mUILayout.setBackgroundColor(Color.BLACK);
-
-			// Gets a reference to the loading dialog
-			mLoadingDialogContainer = mUILayout
-					.findViewById(R.id.loading_indicator);
-
-			// // Shows the loading indicator at start
-			// loadingDialogHandler.sendEmptyMessage(SHOW_LOADING_DIALOG);
-
-			// Adds the inflated layout to the view
-			addContentView(mUILayout, new LayoutParams(
-					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-
-			preview = new Preview(this,
-					(SurfaceView) findViewById(R.id.surfaceView));
-			preview.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
-					LayoutParams.FILL_PARENT));
-			((FrameLayout) findViewById(R.id.preview)).addView(preview);
-			preview.setKeepScreenOn(true);
+//			LayoutInflater inflater = LayoutInflater.from(this);
+//			mUILayout = (RelativeLayout) inflater.inflate(
+//					R.layout.camera_overlay, null, false);
+//
+//			mUILayout.setVisibility(View.VISIBLE);
+//			mUILayout.setBackgroundColor(Color.BLACK);
+//
+//			// Gets a reference to the loading dialog
+//			mLoadingDialogContainer = mUILayout
+//					.findViewById(R.id.loading_indicator);
+//
+//			// // Shows the loading indicator at start
+//			// loadingDialogHandler.sendEmptyMessage(SHOW_LOADING_DIALOG);
+//
+//			// Adds the inflated layout to the view
+//			addContentView(mUILayout, new LayoutParams(
+//					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+//
+		preview = new Preview(this,
+				(SurfaceView) findViewById(R.id.surfaceView));
+		preview.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+				LayoutParams.FILL_PARENT));
+		((FrameLayout) findViewById(R.id.preview)).addView(preview);
+		preview.setKeepScreenOn(true);
 
 			sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 			mSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
@@ -139,10 +133,6 @@ public class GpsInfo extends Activity
 
 			manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5, 1,
 					locationListener);
-		} catch (Throwable e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 	// 更新显示内容的方法

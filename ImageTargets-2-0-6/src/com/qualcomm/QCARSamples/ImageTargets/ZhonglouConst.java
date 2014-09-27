@@ -9,8 +9,8 @@ package com.qualcomm.QCARSamples.ImageTargets;
  */
 public class ZhonglouConst
 {
-	public static final double JING_DU = 108.874850d;
-	public static final double WEI_DU = 34.21935d;
+	public static final double JING_DU = 108.882053d;
+	public static final double WEI_DU = 34.151688d;
 	
 	//xi
 //	public static final double JING_DU = 108.8700d;

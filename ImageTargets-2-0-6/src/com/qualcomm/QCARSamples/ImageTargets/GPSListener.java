@@ -15,12 +15,12 @@ import android.view.View.OnClickListener;
 public class GPSListener extends Service implements OnClickListener
 {
 	private LocationManager lm;
-	
+
 	private final Context mContext;
 
 	public GPSListener(Context context)
 	{
-		this.mContext=context;
+		this.mContext = context;
 	}
 
 	@Override
@@ -37,26 +37,19 @@ public class GPSListener extends Service implements OnClickListener
 
 	private void startGps()
 	{
-		try
-		{
+		lm = (LocationManager) mContext
+				.getSystemService(Context.LOCATION_SERVICE);
 
-			lm = (LocationManager)mContext.getSystemService(Context.LOCATION_SERVICE);
-
-			// 判断GPS是否正常启动
-			if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER))
-			{
-				Intent intent = new Intent(
-						Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-				mContext.startActivity(intent);
-				return;
-			} else
-			{
-				Intent intent = new Intent(mContext, GpsInfo.class);
-				mContext.startActivity(intent);
-			}
-		} catch (Throwable e)
+		// 判断GPS是否正常启动
+		if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER))
 		{
-			e.printStackTrace();
+			Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+			mContext.startActivity(intent);
+			return;
+		} else
+		{
+			Intent intent = new Intent(mContext, GpsInfo.class);
+			mContext.startActivity(intent);
 		}
 	}
 
