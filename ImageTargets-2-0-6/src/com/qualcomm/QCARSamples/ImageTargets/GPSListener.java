@@ -3,6 +3,7 @@
  */
 package com.qualcomm.QCARSamples.ImageTargets;
 
+
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -31,8 +32,18 @@ public class GPSListener extends Service implements OnClickListener
 		case R.id.button_start_gps:
 			startGps();
 			break;
+		case R.id.target_settings:
+			startTargetSetting();
+			break;
+
 		}
 
+	}
+
+	private void startTargetSetting()
+	{
+		Intent intent = new Intent(mContext, TargetSetting.class);
+		mContext.startActivity(intent);
 	}
 
 	private void startGps()

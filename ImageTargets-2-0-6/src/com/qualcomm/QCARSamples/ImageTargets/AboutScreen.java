@@ -28,6 +28,7 @@ public class AboutScreen extends Activity implements OnClickListener
 	private TextView mAboutText;
 	private Button mStartButton;
 	private Button startGpsButton;
+	private Button targetSettings;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -47,6 +48,9 @@ public class AboutScreen extends Activity implements OnClickListener
 
 		startGpsButton = (Button) findViewById(R.id.button_start_gps);
 		startGpsButton.setOnClickListener(new GPSListener(AboutScreen.this));
+		
+		targetSettings = (Button) findViewById(R.id.target_settings);
+		targetSettings.setOnClickListener(new GPSListener(AboutScreen.this));
 	}
 
 	/** Starts the ImageTargets main activity */
