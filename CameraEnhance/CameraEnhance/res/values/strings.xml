@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CameraEnhance</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+	<string name="button_start_camera">Start View</string>
+	<string name="longitude">经度：</string>
+    <string name="latitude">纬度：</string>
+    <string name="submit">提交</string>
+</resources>
